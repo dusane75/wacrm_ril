@@ -683,15 +683,15 @@ export function AutomationBuilder({ initial }: { initial: BuilderInitial }) {
 
       const res = isEditing
         ? await fetch(`/api/automations/${initial.id}`, {
-            method: "PATCH",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify(payload),
-          })
+          method: "PATCH",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(payload),
+        })
         : await fetch(`/api/automations`, {
-            method: "POST",
-            headers: { "content-type": "application/json" },
-            body: JSON.stringify(payload),
-          })
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify(payload),
+        })
 
       const body = await res.json().catch(() => ({}))
       if (!res.ok) {
@@ -1462,10 +1462,10 @@ function StepEditor({
                 cfg.subject === "time_of_day"
                   ? t("config.placeholderTime")
                   : cfg.subject === "contact_field"
-                  ? t("config.placeholderContact")
-                  : cfg.subject === "tag_presence"
-                  ? t("config.placeholderTag")
-                  : ""
+                    ? t("config.placeholderContact")
+                    : cfg.subject === "tag_presence"
+                      ? t("config.placeholderTag")
+                      : ""
               }
               value={(cfg.operand as string) ?? ""}
               onChange={(e) => set({ operand: e.target.value })}
@@ -1587,9 +1587,9 @@ export function fromServerSteps(nodes: ServerStepNode[]): BuilderStep[] {
     branches:
       n.step_type === "condition"
         ? {
-            yes: fromServerSteps(n.branches?.yes ?? []),
-            no: fromServerSteps(n.branches?.no ?? []),
-          }
+          yes: fromServerSteps(n.branches?.yes ?? []),
+          no: fromServerSteps(n.branches?.no ?? []),
+        }
         : undefined,
   }))
 }
